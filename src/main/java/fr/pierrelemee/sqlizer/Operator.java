@@ -2,11 +2,11 @@ package fr.pierrelemee.sqlizer;
 
 public abstract class Operator {
 
-    public String format(Value[] values) {
+    public String format(Value[] values) throws Exception {
         return String.format(this.getFormat(), getValues(values));
     }
 
-    private static String[] getValues(Value[] values) {
+    private static String[] getValues(Value[] values) throws Exception {
         String[] res = new String[values.length];
         for (int i = 0; i < values.length; i++) {
             res[i] = values[i].toSQL();

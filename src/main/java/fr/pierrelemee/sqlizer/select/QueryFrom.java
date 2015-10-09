@@ -1,4 +1,6 @@
-package fr.pierrelemee.sqlizer;
+package fr.pierrelemee.sqlizer.select;
+
+import fr.pierrelemee.sqlizer.Query;
 
 public class QueryFrom extends From {
 
@@ -9,7 +11,7 @@ public class QueryFrom extends From {
     }
 
     @Override
-    public String getSubquery() {
+    public String getSubquery() throws Exception {
         return String.format("(%s) `q0`", this.query.toSQL());
     }
 }

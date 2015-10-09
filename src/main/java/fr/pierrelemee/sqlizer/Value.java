@@ -1,6 +1,8 @@
 package fr.pierrelemee.sqlizer;
 
-import fr.pierrelemee.sqlizer.values.*;
+import fr.pierrelemee.sqlizer.values.LitteralValue;
+import fr.pierrelemee.sqlizer.values.NumericValue;
+import fr.pierrelemee.sqlizer.values.ParameterValue;
 
 public abstract class Value implements SQLable {
 

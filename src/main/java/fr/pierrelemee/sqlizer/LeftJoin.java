@@ -1,5 +1,7 @@
 package fr.pierrelemee.sqlizer;
 
+import fr.pierrelemee.sqlizer.select.TableFrom;
+
 public class LeftJoin {
 
     protected TableFrom outTable;

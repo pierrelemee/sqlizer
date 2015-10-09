@@ -16,8 +16,7 @@ public class Filter implements SQLable {
         this.values = values;
     }
 
-    @Override
-    public String toSQL() {
+    public String toSQL() throws Exception {
         return '`' + this.name + '`' + this.operator.format(this.values);
     }
 }

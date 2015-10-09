@@ -6,7 +6,7 @@ import fr.pierrelemee.sqlizer.Value;
 public class InListOperator extends Operator {
 
     @Override
-    public String format(Value[] values) {
+    public String format(Value[] values) throws Exception {
         StringBuilder builder = new StringBuilder();
         builder.append(" in (");
         boolean isFirst = true;
