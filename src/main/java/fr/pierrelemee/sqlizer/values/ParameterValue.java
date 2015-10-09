@@ -6,8 +6,7 @@ public class ParameterValue extends Value {
 
     public static final ParameterValue VALUE = new ParameterValue();
 
-    @Override
-    public String toSQL() {
+    public String toSQL() throws Exception {
         return "?";
     }
 }

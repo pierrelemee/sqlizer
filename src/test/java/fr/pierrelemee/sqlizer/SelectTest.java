@@ -22,9 +22,20 @@ public class SelectTest extends TestCase {
 
         ResultSet result = this.getConnection().createStatement().executeQuery(select.toSQL());
         int count = 0;
-        if (result.next()) {
-            assertEquals(275, result.getInt("total"));
-        }
-        System.out.println(count);
+        assertTrue(result.next());
+        assertEquals(275, result.getInt("total"));
+    }
+
+    @Test
+    public void testSelectWhere() throws Exception {
+        Select select = Query.select()
+                .field("count(*)", "total")
+                .from("Artist")
+                .where("name", OperatorType.LIKE, "The %");
+
+        ResultSet result = this.getConnection().createStatement().executeQuery(select.toSQL());
+
+        assertTrue(result.next());
+        assertEquals(14, result.getInt("total"));
     }
 }

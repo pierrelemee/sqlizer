@@ -16,8 +16,7 @@ public class Limit implements SQLable {
         this.offset = offset;
     }
 
-    @Override
-    public String toSQL() {
+    public String toSQL() throws Exception {
         return String.format(" limit %d%s", this.limit, this.offset != null ? "," + this.offset : "");
     }
 }

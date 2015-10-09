@@ -67,17 +67,17 @@ public class Select extends Query {
         return this;
     }
 
-    public Query where(String name, OperatorType type, String... values) throws Exception {
+    public Select where(String name, OperatorType type, String... values) throws Exception {
         this.filters.add(new Filter(name, OperatorType.getOperator(type), fromStrings(values)));
         return this;
     }
 
-    public Query where(String name, OperatorType type, Number... values) throws Exception {
+    public Select where(String name, OperatorType type, Number... values) throws Exception {
         this.filters.add(new Filter(name, OperatorType.getOperator(type), fromNumbers(values)));
         return this;
     }
 
-    public Query where(String name, OperatorType type, ParameterValue... values) throws Exception {
+    public Select where(String name, OperatorType type, ParameterValue... values) throws Exception {
         this.filters.add(new Filter(name, OperatorType.getOperator(type), values));
         return this;
     }

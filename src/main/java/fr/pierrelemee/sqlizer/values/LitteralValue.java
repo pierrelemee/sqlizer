@@ -10,8 +10,7 @@ public class LitteralValue extends Value {
         this.litteral = litteral;
     }
 
-    @Override
-    public String toSQL() {
-        return '"' + this.litteral + '"';
+    public String toSQL() throws Exception {
+        return "\"" + this.litteral.replaceAll("%", "\\%") + "\"";
     }
 }

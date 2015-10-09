@@ -5,12 +5,14 @@ import fr.pierrelemee.sqlizer.operators.*;
 public enum OperatorType {
 
     BETWEEN(BetweenOperator.class),
-    IN(InListOperator.class),
     EQUALS(EqualsOperator.class),
+    GREATER_OR_EQUALS(GreaterOrEqualsOperator.class),
+    IN(InListOperator.class),
     IS_NOT_NULL(NotNullOperator.class),
+    LIKE(LikeOperator.class),
     LOWER(LowerOperator.class),
-    LOWER_OR_EQUALS(LowerOrEqualsOperator.class),
-    GREATER_OR_EQUALS(GreaterOrEqualsOperator.class);
+    LOWER_OR_EQUALS(LowerOrEqualsOperator.class);
+
 
     protected Class<? extends Operator> clazz;
 
