@@ -1,6 +1,6 @@
-package fr.pierrelemee.sqlizer.select;
+package fr.pierrelemee.sqlizer.clauses.from;
 
-import fr.pierrelemee.sqlizer.LeftJoin;
+import fr.pierrelemee.sqlizer.clauses.From;
 
 import java.util.LinkedList;
 import java.util.List;

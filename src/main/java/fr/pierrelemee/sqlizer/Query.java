@@ -44,6 +44,16 @@ public abstract class Query implements SQLable {
         return new Insert();
     }
 
+    /*
+    public static Update update() {
+        return new Update();
+    }
+    */
+
+    public static Insert delete() {
+        return new Insert();
+    }
+
     protected abstract void check() throws Exception;
 
     protected abstract String generate() throws Exception;

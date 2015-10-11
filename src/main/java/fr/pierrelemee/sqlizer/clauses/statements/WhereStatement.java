@@ -1,16 +1,20 @@
-package fr.pierrelemee.sqlizer;
+package fr.pierrelemee.sqlizer.clauses.statements;
 
-public class Filter implements SQLable {
+import fr.pierrelemee.sqlizer.SQLable;
+import fr.pierrelemee.sqlizer.Value;
+import fr.pierrelemee.sqlizer.operators.Operator;
+
+public class WhereStatement implements SQLable {
 
     protected String name;
     protected Operator operator;
     protected Value[] values;
 
-    public Filter(String name, Operator operator) {
+    public WhereStatement(String name, Operator operator) {
         this(name, operator, new Value[]{});
     }
 
-    public Filter(String name, Operator operator, Value... values) {
+    public WhereStatement(String name, Operator operator, Value... values) {
         this.name = name;
         this.operator = operator;
         this.values = values;

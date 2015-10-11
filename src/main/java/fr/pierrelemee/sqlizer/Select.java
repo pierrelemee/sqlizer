@@ -1,9 +1,14 @@
 package fr.pierrelemee.sqlizer;
 
-import fr.pierrelemee.sqlizer.operators.Limit;
-import fr.pierrelemee.sqlizer.select.From;
-import fr.pierrelemee.sqlizer.select.QueryFrom;
-import fr.pierrelemee.sqlizer.select.TableFrom;
+import fr.pierrelemee.sqlizer.clauses.From;
+import fr.pierrelemee.sqlizer.clauses.Limit;
+import fr.pierrelemee.sqlizer.clauses.Order;
+import fr.pierrelemee.sqlizer.clauses.Where;
+import fr.pierrelemee.sqlizer.clauses.fields.Field;
+import fr.pierrelemee.sqlizer.clauses.from.QueryFrom;
+import fr.pierrelemee.sqlizer.clauses.from.TableFrom;
+import fr.pierrelemee.sqlizer.clauses.order.OrderType;
+import fr.pierrelemee.sqlizer.operators.OperatorType;
 import fr.pierrelemee.sqlizer.values.NumericValue;
 import fr.pierrelemee.sqlizer.values.ParameterValue;
 
@@ -20,16 +25,16 @@ public class Select extends Query {
     protected From from;
     protected List<From> unions;
     protected List<Field> fields;
-    protected List<Filter> filters;
+    protected Where where;
     protected List<Order> orders;
     protected Limit limit;
 
     Select() {
         this.unions = new LinkedList<From>();
         this.fields = new LinkedList<Field>();
-        this.filters = new LinkedList<Filter>();
+        this.where = new Where();
         this.orders = new LinkedList<Order>();
-        this.limit = null;
+        this.limit = new Limit();
     }
 
     public Select from(String table) {
@@ -63,22 +68,22 @@ public class Select extends Query {
     }
 
     public Select where(String name, OperatorType type) throws Exception {
-        this.filters.add(new Filter(name, OperatorType.getOperator(type)));
+        this.where.where(name, type);
         return this;
     }
 
     public Select where(String name, OperatorType type, String... values) throws Exception {
-        this.filters.add(new Filter(name, OperatorType.getOperator(type), fromStrings(values)));
+        this.where.where(name, type, values);
         return this;
     }
 
     public Select where(String name, OperatorType type, Number... values) throws Exception {
-        this.filters.add(new Filter(name, OperatorType.getOperator(type), fromNumbers(values)));
+        this.where.where(name, type, values);
         return this;
     }
 
     public Select where(String name, OperatorType type, ParameterValue... values) throws Exception {
-        this.filters.add(new Filter(name, OperatorType.getOperator(type), values));
+        this.where.where(name, type, values);
         return this;
     }
 
@@ -92,13 +97,13 @@ public class Select extends Query {
         return this;
     }
 
-    public Query limit(Long limit) {
-        this.limit = new Limit(limit);
+    public Select limit(Long limit) {
+        this.limit.setLimit(limit);
         return this;
     }
 
     public Query limit(Long limit, Integer offset) {
-        this.limit = new Limit(limit, offset);
+        this.limit.setLimit(limit, offset);
         return this;
     }
 
@@ -132,23 +137,6 @@ public class Select extends Query {
         return builder.toString();
     }
 
-    protected String getWheres() throws Exception {
-        if (this.filters.isEmpty()) {
-            return "";
-        }
-        StringBuilder builder = new StringBuilder();
-        builder.append(" where ");
-        boolean isFirst = true;
-        for (Filter filter : this.filters) {
-            if (!isFirst) {
-                builder.append(" and ");
-            }
-            builder.append(filter.toSQL());
-            isFirst = false;
-        }
-        return builder.toString();
-    }
-
     protected String getOrders() {
         if (this.orders.isEmpty()) {
             return "";
@@ -170,13 +158,13 @@ public class Select extends Query {
     protected String getBase(From from) throws Exception {
         return String.format(
                 "%s select %s from %s %s %s %s %s",
-                this.limit != null && this.unions.size() > 0 ? "(" : "",
+                this.limit.isEnabled() && this.unions.size() > 0 ? "(" : "",
                 this.getFields(),
                 from.getSubquery(),
-                this.getWheres(),
+                this.where.toSQL(),
                 this.getOrders(),
-                this.limit != null ? this.limit.toSQL() : "",
-                this.limit != null && this.unions.size() > 0 ? ")" : ""
+                this.limit.toSQL(),
+                this.limit.isEnabled() && this.unions.size() > 0 ? ")" : ""
         );
     }
 

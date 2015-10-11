@@ -1,6 +1,4 @@
-package fr.pierrelemee.sqlizer;
-
-import fr.pierrelemee.sqlizer.operators.*;
+package fr.pierrelemee.sqlizer.operators;
 
 public enum OperatorType {
 

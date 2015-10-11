@@ -1,5 +1,6 @@
 package fr.pierrelemee.sqlizer;
 
+import fr.pierrelemee.sqlizer.operators.OperatorType;
 import junit.framework.TestCase;
 import org.junit.Test;
 
@@ -39,5 +40,21 @@ public class SelectTest extends TestCase {
 
         assertTrue(result.next());
         assertEquals(14, result.getInt("total"));
+    }
+
+    @Test
+    public void testSelectLimit() throws Exception {
+        Select select = Query
+                .select()
+                .field("name")
+                .from("Artist")
+                .limit(5l);
+
+        ResultSet result = this.getConnection().createStatement().executeQuery(select.toSQL());
+
+        int count = 0;
+        for (; result.next(); count++) {
+        }
+        assertEquals(5, count);
     }
 }

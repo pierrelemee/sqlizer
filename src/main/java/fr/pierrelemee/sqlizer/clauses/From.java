@@ -1,4 +1,4 @@
-package fr.pierrelemee.sqlizer.select;
+package fr.pierrelemee.sqlizer.clauses;
 
 public abstract class From {
 

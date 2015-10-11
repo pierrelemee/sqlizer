@@ -1,6 +1,6 @@
-package fr.pierrelemee.sqlizer;
+package fr.pierrelemee.sqlizer.clauses.statements;
 
-public enum FilterLink {
+public enum WhereStatementLink {
 
     FIRST,
     AND,

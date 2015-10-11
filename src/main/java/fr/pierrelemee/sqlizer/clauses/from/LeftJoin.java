@@ -1,6 +1,4 @@
-package fr.pierrelemee.sqlizer;
-
-import fr.pierrelemee.sqlizer.select.TableFrom;
+package fr.pierrelemee.sqlizer.clauses.from;
 
 public class LeftJoin {
 

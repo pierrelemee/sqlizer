@@ -1,6 +1,5 @@
 package fr.pierrelemee.sqlizer.operators;
 
-import fr.pierrelemee.sqlizer.Operator;
 import fr.pierrelemee.sqlizer.Value;
 
 public class InListOperator extends Operator {

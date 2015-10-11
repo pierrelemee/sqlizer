@@ -1,7 +1,5 @@
 package fr.pierrelemee.sqlizer.operators;
 
-import fr.pierrelemee.sqlizer.Operator;
-
 public class LikeOperator extends Operator {
 
     @Override

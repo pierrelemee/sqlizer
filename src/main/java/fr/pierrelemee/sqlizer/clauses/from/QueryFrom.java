@@ -1,6 +1,7 @@
-package fr.pierrelemee.sqlizer.select;
+package fr.pierrelemee.sqlizer.clauses.from;
 
 import fr.pierrelemee.sqlizer.Query;
+import fr.pierrelemee.sqlizer.clauses.From;
 
 public class QueryFrom extends From {
 

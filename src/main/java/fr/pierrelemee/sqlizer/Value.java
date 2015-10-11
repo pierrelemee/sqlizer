@@ -26,4 +26,19 @@ public abstract class Value implements SQLable {
         }
     }
 
+    public static Value[] fromStrings(String... litterals) {
+        Value[] values = new Value[litterals.length];
+        for (int i = 0; i < litterals.length; i++) {
+            values[i] = (Value.fromString(litterals[i]));
+        }
+        return values;
+    }
+
+    public static Value[] fromNumbers(Number... numbers) {
+        Value[] values = new Value[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            values[i] = (new NumericValue(numbers[i]));
+        }
+        return values;
+    }
 }

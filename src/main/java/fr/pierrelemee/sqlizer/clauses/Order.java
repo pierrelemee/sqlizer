@@ -1,4 +1,7 @@
-package fr.pierrelemee.sqlizer;
+package fr.pierrelemee.sqlizer.clauses;
+
+import fr.pierrelemee.sqlizer.SQLable;
+import fr.pierrelemee.sqlizer.clauses.order.OrderType;
 
 public class Order implements SQLable {
 
@@ -14,7 +17,6 @@ public class Order implements SQLable {
         this.type = type;
     }
 
-    @Override
     public String toSQL() {
         return "`" + this.field + "` " + this.type;
     }

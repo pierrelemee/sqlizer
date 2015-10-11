@@ -1,4 +1,6 @@
-package fr.pierrelemee.sqlizer;
+package fr.pierrelemee.sqlizer.operators;
+
+import fr.pierrelemee.sqlizer.Value;
 
 public abstract class Operator {
 

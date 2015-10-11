@@ -1,4 +1,4 @@
-package fr.pierrelemee.sqlizer;
+package fr.pierrelemee.sqlizer.clauses.order;
 
 public enum OrderType {
 

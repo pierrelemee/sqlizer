@@ -1,4 +1,6 @@
-package fr.pierrelemee.sqlizer;
+package fr.pierrelemee.sqlizer.clauses.fields;
+
+import fr.pierrelemee.sqlizer.SQLable;
 
 public class Field implements SQLable {
 
