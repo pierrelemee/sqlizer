@@ -50,8 +50,8 @@ public abstract class Query implements SQLable {
     }
     */
 
-    public static Insert delete() {
-        return new Insert();
+    public static Delete delete() {
+        return new Delete();
     }
 
     protected abstract void check() throws Exception;

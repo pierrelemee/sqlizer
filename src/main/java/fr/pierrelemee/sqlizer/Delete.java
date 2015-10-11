@@ -1,18 +1,25 @@
 package fr.pierrelemee.sqlizer;
 
+import fr.pierrelemee.sqlizer.clauses.From;
+import fr.pierrelemee.sqlizer.clauses.Limit;
 import fr.pierrelemee.sqlizer.clauses.Where;
+import fr.pierrelemee.sqlizer.clauses.from.TableFrom;
 import fr.pierrelemee.sqlizer.operators.OperatorType;
 import fr.pierrelemee.sqlizer.values.ParameterValue;
 
 public class Delete extends Query {
 
+    protected From from;
     protected Where where;
+    protected Limit limit;
 
     public Delete() {
         this.where = new Where();
+        this.limit = new Limit();
     }
 
     public Delete from(String table) {
+        this.from = TableFrom.from(table);
         return this;
     }
 
@@ -40,7 +47,13 @@ public class Delete extends Query {
         return this;
     }
 
-    public Delete limit(String table) {
+    public Delete limit(Long limit) {
+        this.limit.setLimit(limit);
+        return this;
+    }
+
+    public Delete limit(Long limit, Integer offset) {
+        this.limit.setLimit(limit, offset);
         return this;
     }
 
@@ -51,6 +64,10 @@ public class Delete extends Query {
 
     @Override
     protected String generate() throws Exception {
-        return null;
+        return String.format("delete from %s%s%s",
+                this.from.toString(),
+                this.where.toSQL(),
+                this.limit.toSQL()
+        );
     }
 }
