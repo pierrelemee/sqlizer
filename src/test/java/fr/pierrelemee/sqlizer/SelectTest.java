@@ -16,7 +16,8 @@ public class SelectTest extends TestCase {
 
     @Test
     public void testSelectSimple() throws Exception {
-        Select select = Query.select()
+        Select select = Query
+                .select()
                 .field("count(*)", "total")
                 .from("Artist");
 
@@ -28,7 +29,8 @@ public class SelectTest extends TestCase {
 
     @Test
     public void testSelectWhere() throws Exception {
-        Select select = Query.select()
+        Select select = Query
+                .select()
                 .field("count(*)", "total")
                 .from("Artist")
                 .where("name", OperatorType.LIKE, "The %");

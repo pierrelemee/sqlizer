@@ -10,7 +10,7 @@ public class NumericValue extends Value {
         this.number = number;
     }
 
-    public String toSQL()throws Exception {
+    public String toSQL() throws Exception {
         return this.number.toString();
     }
 }

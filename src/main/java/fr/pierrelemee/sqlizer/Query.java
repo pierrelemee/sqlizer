@@ -40,6 +40,10 @@ public abstract class Query implements SQLable {
         return new Select();
     }
 
+    public static Insert insert() {
+        return new Insert();
+    }
+
     protected abstract void check() throws Exception;
 
     protected abstract String generate() throws Exception;
