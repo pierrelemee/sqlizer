@@ -5,11 +5,10 @@ import fr.pierrelemee.sqlizer.clauses.Limit;
 import fr.pierrelemee.sqlizer.clauses.Order;
 import fr.pierrelemee.sqlizer.clauses.Where;
 import fr.pierrelemee.sqlizer.clauses.fields.Field;
-import fr.pierrelemee.sqlizer.clauses.from.QueryFrom;
+import fr.pierrelemee.sqlizer.clauses.from.SelectFrom;
 import fr.pierrelemee.sqlizer.clauses.from.TableFrom;
 import fr.pierrelemee.sqlizer.clauses.order.OrderType;
 import fr.pierrelemee.sqlizer.operators.OperatorType;
-import fr.pierrelemee.sqlizer.values.NumericValue;
 import fr.pierrelemee.sqlizer.values.ParameterValue;
 
 import java.util.Arrays;
@@ -43,10 +42,27 @@ public class Select extends Query {
         return this;
     }
 
+    public Select from(Select from) {
+        this.from = new SelectFrom(from);
+        return this;
+    }
+
     public Select fromAll(String[] tables) {
-        this.from = TableFrom.from(tables[0]);
-        for (String table: Arrays.copyOfRange(tables, 1, tables.length)) {
+        return this.fromAll(Arrays.asList(tables));
+    }
+
+    public Select fromAll(List<String> tables) {
+        this.from = TableFrom.from(tables.get(0));
+        for (String table: tables.subList(1, tables.size())) {
             this.unionAll(table);
+        }
+        return this;
+    }
+
+    public Select fromAll(TableFrom... froms) {
+        this.from = froms[0];
+        for (TableFrom from: Arrays.asList(froms).subList(1, froms.length)) {
+            this.unionAll(from);
         }
         return this;
     }
@@ -72,7 +88,7 @@ public class Select extends Query {
     }
 
     public Select unionAll(Query query) {
-        this.unions.add(new QueryFrom(query));
+        this.unions.add(new SelectFrom(query));
         return this;
     }
 
