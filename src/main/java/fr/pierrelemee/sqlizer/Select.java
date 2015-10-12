@@ -12,6 +12,7 @@ import fr.pierrelemee.sqlizer.operators.OperatorType;
 import fr.pierrelemee.sqlizer.values.NumericValue;
 import fr.pierrelemee.sqlizer.values.ParameterValue;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,6 +40,14 @@ public class Select extends Query {
 
     public Select from(String table) {
         this.from = TableFrom.from(table);
+        return this;
+    }
+
+    public Select fromAll(String[] tables) {
+        this.from = TableFrom.from(tables[0]);
+        for (String table: Arrays.copyOfRange(tables, 1, tables.length)) {
+            this.unionAll(table);
+        }
         return this;
     }
 
