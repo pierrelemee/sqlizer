@@ -7,6 +7,10 @@ import java.util.List;
 
 public class Insert extends Query {
 
+    /**
+     * TODO anonymous inserts
+     * TODO implements multiple inserts
+     */
     protected String table;
     protected List<InsertValue> values;
 

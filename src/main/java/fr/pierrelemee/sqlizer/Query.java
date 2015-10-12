@@ -44,11 +44,10 @@ public abstract class Query implements SQLable {
         return new Insert();
     }
 
-    /*
     public static Update update() {
         return new Update();
     }
-    */
+
 
     public static Delete delete() {
         return new Delete();

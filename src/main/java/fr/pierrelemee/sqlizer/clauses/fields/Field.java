@@ -16,7 +16,6 @@ public class Field implements SQLable {
         this.label = label;
     }
 
-    @Override
     public String toSQL() {
         return this.name + (this.label != null ? " as `" + this.label + "`" : "");
     }
