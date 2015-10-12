@@ -87,12 +87,12 @@ public class Select extends Query {
         return this;
     }
 
-    public Query orderBy(String field) {
+    public Select orderBy(String field) {
         this.orders.add(new Order(field));
         return this;
     }
 
-    public Query orderBy(String field, OrderType type) {
+    public Select orderBy(String field, OrderType type) {
         this.orders.add(new Order(field, type));
         return this;
     }
@@ -102,25 +102,9 @@ public class Select extends Query {
         return this;
     }
 
-    public Query limit(Long limit, Integer offset) {
+    public Select limit(Long limit, Integer offset) {
         this.limit.setLimit(limit, offset);
         return this;
-    }
-
-    private static Value[] fromStrings(String... litterals) {
-        Value[] values = new Value[litterals.length];
-        for (int i = 0; i < litterals.length; i++) {
-            values[i] = (Value.fromString(litterals[i]));
-        }
-        return values;
-    }
-
-    private static Value[] fromNumbers(Number... numbers) {
-        Value[] values = new Value[numbers.length];
-        for (int i = 0; i < numbers.length; i++) {
-            values[i] = (new NumericValue(numbers[i]));
-        }
-        return values;
     }
 
     protected String getFields() {

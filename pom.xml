@@ -14,12 +14,14 @@
         <github.maven.repository>file:///tmp/maven-repository/</github.maven.repository>
     </properties>
 
+    <!--
     <distributionManagement>
         <repository>
             <id>maven-repository</id>
             <url>${github.maven.repository}</url>
         </repository>
     </distributionManagement>
+    -->
 
     <dependencies>
         <!-- Test scope dependencies -->
