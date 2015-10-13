@@ -6,8 +6,14 @@
     <name>sqlizer</name>
     <description>JAVA library to perform OOP SQL queries</description>
     <packaging>jar</packaging>
-    <version>0.2.SNAPSHOT-SNAPSHOT</version>
+    <version>0.3.SNAPSHOT-SNAPSHOT</version>
     <url>http://pierrelemee.fr</url>
+    <developers>
+        <developer>
+            <name>Pierre Lemée</name>
+            <email>pierre@pierrelemee.fr</email>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
