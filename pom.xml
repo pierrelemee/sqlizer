@@ -6,7 +6,7 @@
     <name>sqlizer</name>
     <description>JAVA library to perform OOP SQL queries</description>
     <packaging>jar</packaging>
-    <version>0.1.SNAPSHOT-SNAPSHOT</version>
+    <version>sqlizer-0.1.SNAPSHOT</version>
     <url>http://pierrelemee.fr</url>
     <developers>
         <developer>
