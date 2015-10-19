@@ -87,8 +87,8 @@ public class Select extends Query {
         return this;
     }
 
-    public Select unionAll(Query query) {
-        this.unions.add(new SelectFrom(query));
+    public Select unionAll(Select select) {
+        this.unions.add(new SelectFrom(select));
         return this;
     }
 
