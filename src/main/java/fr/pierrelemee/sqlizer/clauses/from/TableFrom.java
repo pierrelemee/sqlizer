@@ -50,6 +50,6 @@ public class TableFrom extends From {
 
     @Override
     public String toString() {
-        return this.table + (this.alias != null ? " " + this.alias : "");
+        return "`"+  this.table + "`" + (this.alias != null ? " " + this.alias : "");
     }
 }

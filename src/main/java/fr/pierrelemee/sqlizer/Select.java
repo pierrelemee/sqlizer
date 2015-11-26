@@ -166,8 +166,8 @@ public class Select extends Query {
 
     protected String getBase(From from) throws Exception {
         return String.format(
-                "%s select %s from %s %s %s %s %s",
-                this.limit.isEnabled() && this.unions.size() > 0 ? "(" : "",
+                "%sselect %s from %s %s %s %s %s",
+                this.limit.isEnabled() && this.unions.size() > 0 ? "( " : "",
                 this.getFields(),
                 from.getSubquery(),
                 this.where.toSQL(),
