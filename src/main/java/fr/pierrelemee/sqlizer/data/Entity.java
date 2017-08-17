@@ -31,25 +31,52 @@ public abstract class Entity {
     public abstract void inflate(ResultSet result) throws SQLException;
 
     public final void save(Connection connection) throws SQLException, Exception {
-        Statement stmt = connection.createStatement();
-        Query query = this.isDbSync ? this.getUpdateQuery() : this.getInsertQuery();
-        stmt.executeUpdate(query.toSQL(), Statement.RETURN_GENERATED_KEYS);
-        ResultSet result = stmt.getGeneratedKeys();
-        if (result.next()) {
-            if (this.isDbSync) {
-                this.onUpdateComplete(result);
-            } else {
-                this.onInsertComplete(result);
-            }
-            this.isDbSync = true;
+        if (this.isDbSync) {
+            this.update(connection);
+        } else {
+            this.insert(connection);
         }
     }
 
-    protected abstract Insert getInsertQuery();
+    protected void insert(Connection connection) throws Exception {
+        Statement stmt = connection.createStatement();
+        Insert query = Query.insert().into(this.getTableName());
+        this.buildInsertQuery(query);
+        stmt.executeUpdate(query.toSQL(), Statement.RETURN_GENERATED_KEYS);
+        ResultSet result = stmt.getGeneratedKeys();
+
+        if (result.next()) {
+            this.onInsertComplete(result);
+        }
+
+        result.close();
+        stmt.close();
+
+        this.isDbSync = true;
+    }
+
+    protected void update(Connection connection) throws Exception {
+        Statement stmt = connection.createStatement();
+        Update query = Query.update().table(this.getTableName());
+        this.buildUpdateQuery(query);
+        stmt.executeUpdate(query.toSQL(), Statement.RETURN_GENERATED_KEYS);
+        ResultSet result = stmt.getGeneratedKeys();
+
+        if (result.next()) {
+            this.onUpdateComplete(result);
+        }
+
+        result.close();
+        stmt.close();
+
+        this.isDbSync = true;
+    }
+
+    protected abstract void buildInsertQuery(Insert query);
 
     protected void onInsertComplete(ResultSet resultSet) throws SQLException {}
 
-    protected abstract Update getUpdateQuery();
+    protected abstract void buildUpdateQuery(Update query);
 
     protected void onUpdateComplete(ResultSet resultSet) {}
 

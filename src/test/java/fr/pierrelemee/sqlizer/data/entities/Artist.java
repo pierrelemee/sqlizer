@@ -40,31 +40,21 @@ public class Artist extends Entity {
         this.name = result.getString("Name");
     }
 
-    @Override
-    protected Insert getInsertQuery() {
-        return Query
-                .insert()
-                .into(this.getTableName())
-                .value("ArtistId", Value.fromNumbers(this.id)[0])
-                .value("Name", this.name);
+    protected void buildInsertQuery(Insert query) {
+        query
+            .value("ArtistId", Value.fromNumbers(this.id)[0])
+            .value("Name", this.name);
+    }
+
+    protected void buildUpdateQuery(Update query) {
+        query
+            .set("Name", this.name)
+            .where("ArtistId", OperatorType.EQUALS, this.id);
     }
 
     @Override
     protected void onInsertComplete(ResultSet result) throws SQLException {
         this.id = result.getInt(1);
-    }
-
-    @Override
-    protected Update getUpdateQuery() {
-        try {
-            return Query
-                    .update()
-                    .table(this.getTableName())
-                    .set("Name", this.name)
-                    .where("ArtistId", OperatorType.EQUALS, this.id);
-        } catch (Exception e) {
-            return null;
-        }
     }
 
     @Override

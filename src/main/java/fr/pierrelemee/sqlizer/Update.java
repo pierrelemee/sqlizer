@@ -35,27 +35,27 @@ public class Update extends Query {
         return this;
     }
 
-    public Update where(String name, OperatorType type) throws Exception {
+    public Update where(String name, OperatorType type) {
         this.where.where(name, type);
         return this;
     }
 
-    public Update where(String name, OperatorType type, String... values) throws Exception {
+    public Update where(String name, OperatorType type, String... values) {
         this.where.where(name, type, values);
         return this;
     }
 
-    public Update where(String name, OperatorType type, Number... values) throws Exception {
+    public Update where(String name, OperatorType type, Number... values) {
         this.where.where(name, type, values);
         return this;
     }
 
-    public Update where(String name, OperatorType type, ParameterValue... values) throws Exception {
+    public Update where(String name, OperatorType type, ParameterValue... values) {
         this.where.where(name, type, values);
         return this;
     }
 
-    public Update orderBy(String name) throws Exception {
+    public Update orderBy(String name) {
         return this;
     }
 

@@ -17,19 +17,19 @@ public class Where implements SQLable {
         this.statements = new LinkedList<WhereStatement>();
     }
 
-    public void where(String name, OperatorType type) throws Exception {
+    public void where(String name, OperatorType type) {
         this.addFilter(new WhereStatement(name, OperatorType.getOperator(type)));
     }
 
-    public void where(String name, OperatorType type, String... values) throws Exception {
+    public void where(String name, OperatorType type, String... values) {
         this.addFilter(new WhereStatement(name, OperatorType.getOperator(type), Value.fromStrings(values)));
     }
 
-    public void where(String name, OperatorType type, Number... values) throws Exception {
+    public void where(String name, OperatorType type, Number... values) {
         this.statements.add(new WhereStatement(name, OperatorType.getOperator(type), Value.fromNumbers(values)));
     }
 
-    public void where(String name, OperatorType type, ParameterValue... values) throws Exception {
+    public void where(String name, OperatorType type, ParameterValue... values) {
         this.statements.add(new WhereStatement(name, OperatorType.getOperator(type), values));
     }
 

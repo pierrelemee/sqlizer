@@ -23,7 +23,11 @@ public enum OperatorType {
         this.clazz = clazz;
     }
 
-    public static Operator getOperator(OperatorType type) throws Exception {
-        return type.clazz.newInstance();
+    public static Operator getOperator(OperatorType type) {
+        try {
+            return type.clazz.newInstance();
+        } catch (Exception e) {
+            return new EqualsOperator();
+        }
     }
 }
